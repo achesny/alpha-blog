@@ -8,9 +8,10 @@ class UsersController < ApplicationController
             flash[:notice] = "Welcome to the Alpha Blog #{@user.username}, you have successfully signed up"
             redirect_to articles_path
         else
-            render 'new'
+            render 'new', status: :unprocessable_entity
         end
     end
+    
     private
     def user_params
         params.require(:user).permit(:username, :email, :password)
